@@ -1,8 +1,17 @@
 
 package com.mycompany.peluqueriacanina.logica;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Mascota {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int num_cliente;
     private String nombre;
     private String raza;
@@ -11,6 +20,7 @@ public class Mascota {
     private String atencion_especial;
     private String observaciones;
     
+    @OneToOne
     private Duenio unDuenio;
 
     public Mascota() {
