@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
@@ -19,6 +20,10 @@ public class DuenioJpaController implements Serializable {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
+    
+    public DuenioJpaController() {
+        emf = Persistence.createEntityManagerFactory("PeluCaninaPU");
+                }    
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
