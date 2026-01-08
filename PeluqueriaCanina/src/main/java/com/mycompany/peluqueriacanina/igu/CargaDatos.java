@@ -1,17 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package com.mycompany.peluqueriacanina.igu;
 
-/**
- *
- * @author lucas_grgjcxq
- */
+package com.mycompany.peluqueriacanina.igu;
+import com.mycompany.peluqueriacanina.logica.Controladora;
+
 public class CargaDatos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CargaDatos.class.getName());
-
+    
+    Controladora control = new Controladora();
+    
     public CargaDatos() {
         initComponents();
     }
