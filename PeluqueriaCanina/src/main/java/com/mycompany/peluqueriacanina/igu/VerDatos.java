@@ -62,6 +62,7 @@ public class VerDatos extends javax.swing.JFrame {
         jLabel2.setText("Datos de mascotas:");
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(this::btnEditarActionPerformed);
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(this::btnEliminarActionPerformed);
@@ -171,6 +172,27 @@ public class VerDatos extends javax.swing.JFrame {
                     mostrarMensaje("No hay nada para eliminar en la tabla", "Error","Error al eliminar");
                     }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+           if(tablaMascotas.getRowCount() > 0){ //Verificacion de Tabla no vacia Para evitar errores
+            if(tablaMascotas.getSelectedRow() != -1){                //Las filas es como un vector, asi que empieza desde 0, no deberia ser -1
+                //OBTENGO LA ID de mascota a editar
+                int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0)));
+                
+                ModificarDatos pantallaModif = new ModificarDatos();
+                pantallaModif.setVisible(true);
+                pantallaModif.setLocationRelativeTo(null);
+                
+                   
+        }
+            else{
+                mostrarMensaje("No selecciono ninguna mascota", "Error", "Error de eliminacion");
+            }
+        }
+            else {
+                    mostrarMensaje("No hay nada para eliminar en la tabla", "Error","Error al eliminar");
+                    }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
         public void mostrarMensaje(String mensaje, String tipo, String titulo){
             JOptionPane optionPane = new JOptionPane(mensaje);
