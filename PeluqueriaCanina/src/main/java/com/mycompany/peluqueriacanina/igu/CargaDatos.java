@@ -244,7 +244,22 @@ public class CargaDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void cmpGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpGuardarActionPerformed
-        // TODO add your handling code here:
+        
+        String nombreMasco = txtNombre.getText();
+        String raza = txtRaza.getText();
+        String color = txtColor.getText();
+        String observaciones = txtObservaciones.getText();
+        
+        String alergico =  (String) cmbAlergico.getSelectedItem();
+        String atenEsp =  (String) cmbAS.getSelectedItem();
+        
+
+        
+        String nombreDuenio = txtNomDuenio.getText();
+        String celDuenio = txtCelDuenio.getText();
+                
+        
+        control.guardar(nombreMasco, raza, color, observaciones, alergico, atenEsp, nombreDuenio, celDuenio );
     }//GEN-LAST:event_cmpGuardarActionPerformed
 
 
