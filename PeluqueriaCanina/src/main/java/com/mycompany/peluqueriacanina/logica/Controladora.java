@@ -2,6 +2,7 @@
 package com.mycompany.peluqueriacanina.logica;
 
 import com.mycompany.peluqueriacanina.persistencia.ControladoraPersistencia;
+import java.util.List;
 
 public class Controladora {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
@@ -27,5 +28,10 @@ public class Controladora {
         
         controlPersis.guardar(duenio,masco);
         
+    }
+
+    public List<Mascota> traerMascota() {
+        
+        return controlPersis.traerMascotas();
     }
 }
