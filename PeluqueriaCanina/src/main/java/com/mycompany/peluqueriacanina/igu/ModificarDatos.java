@@ -1,6 +1,7 @@
 
 package com.mycompany.peluqueriacanina.igu;
 import com.mycompany.peluqueriacanina.logica.Controladora;
+import com.mycompany.peluqueriacanina.logica.Mascota;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -9,9 +10,14 @@ public class ModificarDatos extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ModificarDatos.class.getName());
     
     Controladora control = null;
+    int num_cliente;
+    Mascota masco;
     
-    public ModificarDatos() {
+    public ModificarDatos(int num_cliente) {
+        control = new Controladora();
+        this.num_cliente = num_cliente;
         initComponents();
+        cargarDatos(num_cliente);
     }
 
 
@@ -259,15 +265,15 @@ public class ModificarDatos extends javax.swing.JFrame {
         
         String nombreDuenio = txtNomDuenio.getText();
         String celDuenio = txtCelDuenio.getText();
-                
+                //masco es la clave para obtener la ID y saber a cual editar
+        control.modificarMascota(masco,nombreMasco,raza,color,observaciones, alergico, atenEsp, nombreDuenio, celDuenio);
         
-        control.guardar(nombreMasco, raza, color, observaciones, alergico, atenEsp, nombreDuenio, celDuenio );
+        mostrarMensaje("Edicion realizada correctamente","info","Edicion correcta");
         
-        JOptionPane optionPane = new JOptionPane("Se guardó correctamente");
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("Guardado Exitoso");
-        dialog.setAlwaysOnTop(true);
-        dialog.setVisible(true);
+        VerDatos pantalla = new VerDatos(); //Estrategia
+        pantalla.setVisible(true);
+        pantalla.setLocationRelativeTo(null);
+        this.dispose(); //para que se cierre la ventana
         
     }//GEN-LAST:event_cmpGuardarActionPerformed
 
@@ -297,4 +303,50 @@ public class ModificarDatos extends javax.swing.JFrame {
     private javax.swing.JTextArea txtObservaciones;
     private javax.swing.JTextField txtRaza;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatos(int num_cliente) {
+        this.masco = control.traerMascota(num_cliente);
+        
+        txtNombre.setText(masco.getNombre());
+        txtCelDuenio.setText(masco.getUnDuenio().getCelDuenio());
+        txtColor.setText(masco.getColor());
+        txtNomDuenio.setText(masco.getUnDuenio().getNombre());
+        txtObservaciones.setText(masco.getObservaciones());
+        txtRaza.setText(masco.getRaza());
+        
+        if(masco.getAlergico().equals("SI") ){
+        cmbAlergico.setSelectedIndex(1);
+        }
+        else {
+              if(masco.getAlergico().equals("NO") ){
+                  cmbAlergico.setSelectedIndex(2);
+              }
+
+        }
+              
+        if(masco.getAtencion_especial().equals("SI") ){
+        cmbAS.setSelectedIndex(1);
+        }
+        else {
+              if(masco.getAtencion_especial().equals("NO") ){
+                  cmbAS.setSelectedIndex(2);
+              }
+
+        }      
+        
+    }
+    
+    public void mostrarMensaje(String mensaje, String tipo, String titulo){
+            JOptionPane optionPane = new JOptionPane(mensaje);
+            if(tipo.equals("info")){
+                 optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+            }
+            else if (tipo.equals("Error")){
+                optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+            }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);    
+            
+        }
 }

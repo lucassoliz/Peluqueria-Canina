@@ -179,10 +179,10 @@ public class VerDatos extends javax.swing.JFrame {
                 //OBTENGO LA ID de mascota a editar
                 int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0)));
                 
-                ModificarDatos pantallaModif = new ModificarDatos();
+                ModificarDatos pantallaModif = new ModificarDatos(num_cliente);
                 pantallaModif.setVisible(true);
                 pantallaModif.setLocationRelativeTo(null);
-                
+                this.dispose();
                    
         }
             else{
@@ -192,6 +192,7 @@ public class VerDatos extends javax.swing.JFrame {
             else {
                     mostrarMensaje("No hay nada para eliminar en la tabla", "Error","Error al eliminar");
                     }
+           
     }//GEN-LAST:event_btnEditarActionPerformed
 
         public void mostrarMensaje(String mensaje, String tipo, String titulo){
@@ -221,7 +222,7 @@ public class VerDatos extends javax.swing.JFrame {
     private javax.swing.JTable tablaMascotas;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarTabla() {
+    public void cargarTabla() {
         //Definir el modelo que queremos que tenga la tabla
         DefaultTableModel modeloTabla = new DefaultTableModel(){
             //Evitar que se pueda editar la tabla desde la interfaz:
